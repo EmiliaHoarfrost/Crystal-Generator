@@ -1,6 +1,6 @@
 # Crystal Lattice Viewer - Minerals
 
-A web-based 3D viewer for exploring crystal structures of common minerals. Built with **Three.js**, it lets you interactively adjust **unit cell parameters**, select **Bravais lattices**, and visualize **atoms as spheres**. Metals have metallic shading.
+A [web-based 3D viewer](https://emiliahoarfrost.github.io/Crystal-Generator/index.html) for exploring crystal structures of common minerals. Built with **Three.js**, it lets you interactively adjust **unit cell parameters**, select **Bravais lattices**, and visualize **atoms as spheres**. Metals have metallic shading.
 
 ---
 
@@ -87,7 +87,13 @@ Open the viewer locally or deploy via GitHub Pages.
         <option value="diamond">Diamond (C)</option>
         <option value="halite">Halite (NaCl)</option>
         <option value="graphite">Graphite (C)</option>
+        <option value="ruby">Ruby (Cr-Corundum)</option>
+        <option value="sapphire">Sapphire (Al2O3)</option>
+        <option value="emerald">Emerald (Cr-Beryl)</option>
+        <option value="quartz">Quartz (SiO2)</option>
+        <option value="peridot">Peridot (Olivine)</option>
       </select>
+
 
       <h3>Atom Size</h3>
       <label>Radius: <input id="atomRadius" type="number" step="0.01" value="0.08" min="0.01" max="1.0"></label>
@@ -130,13 +136,21 @@ Open the viewer locally or deploy via GitHub Pages.
     const atomMaterial = new THREE.MeshStandardMaterial({ color:0x0077ff, metalness:0, roughness:0.8 });
 
     const mineralData = {
-      gold:{a:4.078,b:4.078,c:4.078,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xffd700,metal:true},
-      silver:{a:4.085,b:4.085,c:4.085,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xc0c0c0,metal:true},
-      copper:{a:3.615,b:3.615,c:3.615,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xb87333,metal:true},
-      diamond:{a:3.567,b:3.567,c:3.567,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xffffff,metal:false},
-      halite:{a:5.640,b:5.640,c:5.640,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xadd8e6,metal:false},
-      graphite:{a:2.461,b:2.461,c:6.708,alpha:90,beta:90,gamma:120,bravais:"P_hexagonal",color:0x555555,metal:false}
+      gold:      {a:4.078,b:4.078,c:4.078,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xffd700,metal:true},
+      silver:    {a:4.085,b:4.085,c:4.085,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xc0c0c0,metal:true},
+      copper:    {a:3.615,b:3.615,c:3.615,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xb87333,metal:true},
+      diamond:   {a:3.567,b:3.567,c:3.567,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xffffff,metal:false},
+      halite:    {a:5.640,b:5.640,c:5.640,alpha:90,beta:90,gamma:90,bravais:"F_cubic",color:0xadd8e6,metal:false},
+      graphite:  {a:2.461,b:2.461,c:6.708,alpha:90,beta:90,gamma:120,bravais:"P_hexagonal",color:0x555555,metal:false},
+    
+      // Impurity minerals
+      ruby:      {a:4.758,b:4.758,c:12.991,alpha:90,beta:90,gamma:120,bravais:"P_hexagonal",color:0xe0115f,metal:false}, // Cr-doped corundum
+      sapphire:  {a:4.758,b:4.758,c:12.991,alpha:90,beta:90,gamma:120,bravais:"P_hexagonal",color:0x0f52ba,metal:false}, // Al2O3 w/ Fe/Ti
+      emerald:   {a:9.21,b:9.21,c:9.19,alpha:90,beta:90,gamma:120,bravais:"P_hexagonal",color:0x50c878,metal:false}, // Cr-doped beryl
+      quartz:    {a:4.913,b:4.913,c:5.405,alpha:90,beta:90,gamma:120,bravais:"P_hexagonal",color:0xf0f8ff,metal:false},
+      peridot:   {a:4.75,b:4.75,c:11.9,alpha:90,beta:90,gamma:120,bravais:"P_hexagonal",color:0x9fff00,metal:false}
     };
+
 
     document.getElementById('mineralSelect').addEventListener('change', e=>{
       const m=mineralData[e.target.value]; if(!m) return;
