@@ -1,6 +1,6 @@
 # Crystal Lattice Viewer - Minerals
 
-A [web-based 3D viewer](https://emiliahoarfrost.github.io/Crystal-Generator/index.html) for exploring crystal structures of common minerals. Built with **Three.js**, it lets you interactively adjust **unit cell parameters**, select **Bravais lattices**, and visualize **atoms as spheres**. Metals have metallic shading.
+A [web-based 3D viewer](https://emiliahoarfrost.github.io/Crystal-Generator/index.html) for exploring crystal structures of common minerals. Built with **Three.js**, it lets you interactively adjust **unit cell parameters**, select **Bravais lattices**, and visualize **atoms as spheres**. Metals have metallic shading. Disclaimer: use of generative AI.
 
 ---
 
